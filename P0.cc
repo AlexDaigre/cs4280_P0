@@ -2,6 +2,7 @@
 #include <fstream>
 #include <string>
 #include <list>
+#include "binarySearchTree.cc"
 using namespace std;
 
 list<string> readInputFile(string fileName);
@@ -19,7 +20,16 @@ int main (int argc, char* argv[]) {
         return 1; 
     }
 
+    BinarySearchTree binarySearchTree;
 
+    list<string>::iterator i;
+    for (i = fileContents.begin(); i != fileContents.end(); ++i){
+        binarySearchTree.addNode(*i);
+    }
+
+    binarySearchTree.printPreOrderTraversal();
+    binarySearchTree.printInOrderTraversal();
+    binarySearchTree.printPostOrderTraversal();
 }
 
 list<string> readInputFromFile(string fileName) {

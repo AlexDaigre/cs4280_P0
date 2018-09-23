@@ -1,6 +1,7 @@
 #include <string>
 #include <stack>
 #include <list>
+#include <iostream>
 using namespace std; 
 
 struct Node {
@@ -17,80 +18,97 @@ struct Node {
 
 class BinarySearchTree { 
     private: 
-    Node *rootNode;
+        Node *rootNode;
   
-    void addNode(string value) { 
-        bool complete = false; 
-        Node *currentNode = this->rootNode;
+    public:
+        void addNode(string value) { 
+            bool complete = false; 
+            Node *currentNode = this->rootNode;
 
-        if (currentNode->value == "") {
-            currentNode->value = value;
-            complete = true;
-        }
+            if (currentNode->value == "") {
+                currentNode->value = value;
+                complete = true;
+            }
 
-        while (complete == false){ 
-            if (currentNode->value.compare(value) > 0) {
+            while (complete == false){ 
                 if (currentNode->value.compare(value) > 0) {
-                    if (!currentNode->right) {
-                        currentNode->right = new Node(value);
-                        complete = true;
+                    if (currentNode->value.compare(value) > 0) {
+                        if (!currentNode->right) {
+                            currentNode->right = new Node(value);
+                            complete = true;
+                        } else {
+                            currentNode = currentNode->right;
+                        }
                     } else {
-                        currentNode = currentNode->right;
-                    }
-                } else {
-                    if (!currentNode->left) {
-                        currentNode->left = new Node(value);
-                        complete = true;
-                    } else {
-                        currentNode = currentNode->left;
+                        if (!currentNode->left) {
+                            currentNode->left = new Node(value);
+                            complete = true;
+                        } else {
+                            currentNode = currentNode->left;
+                        }
                     }
                 }
             }
         }
-    }
 
-    list<string> getPreOrderTraversal() {
-    }
+        void printPostOrderTraversal() {
+            Node *currentNode = this->rootNode;
 
-    list<string> printInOrderTraversal() {
-        Node *currentNode = this->rootNode;
-        list<string> traversalList;
-        stack<Node *> nodeStack;
-
-        if (currentNode->value == ""){
-            return traversalList;
-        }
-
-        while (currentNode != NULL || nodeStack.empty() == false) { 
-            while (currentNode !=  NULL) {
-                nodeStack.push(currentNode); 
-                currentNode = currentNode->left; 
+            if (currentNode->value == ""){
+                return;
             }
-            currentNode = nodeStack.top(); 
-            nodeStack.pop(); 
-            
-            traversalList.push_back(currentNode->value); 
-        
-            currentNode = currentNode->right;
-        }
-        return traversalList;
-    }
 
-    list<string> printPostOrderTraversal() {
-        Node *currentNode = this->rootNode;
-        list<string> traversalList;
-        stack<Node *> nodeStack;
-
-        if (currentNode->value == ""){
-            return traversalList;
+            postOrderRecursiveBody(currentNode);
         }
 
-        while (currentNode) {
-            if (currentNode->right){
-                nodeStack.push(currentNode->right);
+        void printInOrderTraversal() {
+            Node *currentNode = this->rootNode;
+
+            if (currentNode->value == ""){
+                return;
             }
-            nodeStack.push(currentNode);
-            currentNode = currentNode->left;
+
+            inOrderRecursiveBody(currentNode);
         }
-    }
+
+        void printPreOrderTraversal() {
+            Node *currentNode = this->rootNode;
+
+            if (currentNode->value == ""){
+                return;
+            }
+
+            preOrderRecursiveBody(currentNode);
+        }
+
+    private:
+        void preOrderRecursiveBody(struct Node* node) { 
+            if (node == NULL) {
+                return; 
+            }
+
+            cout << node->value << " "; 
+            preOrderRecursiveBody(node->left); 
+            preOrderRecursiveBody(node->right); 
+        } 
+
+        void inOrderRecursiveBody(struct Node* node) { 
+            if (node == NULL) {
+                return; 
+            }
+
+            inOrderRecursiveBody(node->left); 
+            cout << node->value << " "; 
+            inOrderRecursiveBody(node->right); 
+        }
+
+        void postOrderRecursiveBody(struct Node* node) { 
+            if (node == NULL) {
+                return; 
+            }
+
+            postOrderRecursiveBody(node->left); 
+            postOrderRecursiveBody(node->right); 
+            cout << node->value << " "; 
+        } 
 };

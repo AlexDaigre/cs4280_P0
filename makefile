@@ -1,13 +1,16 @@
 CC      = gcc
 CFLAGS  = -g
-TARGET  = ass1
-OBJS    = main.o
+TARGET  = P0
+OBJS    = P0.o binarySearchTree.o
 
 $(TARGET): $(OBJS)
 	$(CC) -o $(TARGET) $(OBJS)
 
-main.o: main.c
-	$(CC) $(CFLAGS) -c main.c
+P0.o: P0.c
+	$(CC) $(CFLAGS) -c P0.c
+
+binarySearchTree.o: binarySearchTree.c
+	$(CC) $(CFLAGS) -c binarySearchTree.c
 
 clean:
 /bin/rm -f *.o $(TARGET)

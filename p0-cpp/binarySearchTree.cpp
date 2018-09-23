@@ -4,20 +4,26 @@
 #include <iostream>
 using namespace std; 
 
-struct Node {
-    string value;
-    Node *left;
-    Node *right;
-
-    Node(string value = "") {
-        this->value = value;
-        this->left = NULL;
-        this->right = NULL;
-    }
-};
-
 class BinarySearchTree { 
     private: 
+        struct Node {
+            string value;
+            Node *left;
+            Node *right;
+
+            Node() {
+                this->value = "";
+                this->left = NULL;
+                this->right = NULL;
+            }
+
+            Node(string value = "") {
+                this->value = value;
+                this->left = NULL;
+                this->right = NULL;
+            }
+        };
+
         Node *rootNode;
   
     public:
@@ -51,7 +57,7 @@ class BinarySearchTree {
             }
         }
 
-        void printPostOrderTraversal() {
+        void traversePostorder() {
             Node *currentNode = this->rootNode;
 
             if (currentNode->value == ""){
@@ -61,7 +67,7 @@ class BinarySearchTree {
             postOrderRecursiveBody(currentNode);
         }
 
-        void printInOrderTraversal() {
+        void traverseInorder() {
             Node *currentNode = this->rootNode;
 
             if (currentNode->value == ""){
@@ -71,7 +77,7 @@ class BinarySearchTree {
             inOrderRecursiveBody(currentNode);
         }
 
-        void printPreOrderTraversal() {
+        void traversePreorder() {
             Node *currentNode = this->rootNode;
 
             if (currentNode->value == ""){
@@ -82,7 +88,7 @@ class BinarySearchTree {
         }
 
     private:
-        void preOrderRecursiveBody(struct Node* node) { 
+        void preOrderRecursiveBody(Node* node) { 
             if (node == NULL) {
                 return; 
             }
@@ -92,7 +98,7 @@ class BinarySearchTree {
             preOrderRecursiveBody(node->right); 
         } 
 
-        void inOrderRecursiveBody(struct Node* node) { 
+        void inOrderRecursiveBody(Node* node) { 
             if (node == NULL) {
                 return; 
             }
@@ -102,7 +108,7 @@ class BinarySearchTree {
             inOrderRecursiveBody(node->right); 
         }
 
-        void postOrderRecursiveBody(struct Node* node) { 
+        void postOrderRecursiveBody(Node* node) { 
             if (node == NULL) {
                 return; 
             }

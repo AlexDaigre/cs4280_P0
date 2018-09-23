@@ -1,18 +1,19 @@
-#include <iostream>
+#include <iostream> 
+#include <iterator>
 #include <fstream>
 #include <string>
 #include <list>
-#include "binarySearchTree.cc"
+#include "binarySearchTree.h"
 using namespace std;
 
-list<string> readInputFile(string fileName);
+list<string> readInputFromFile(string fileName);
 list<string> readInputFromKeyboard();
 
-int main (int argc, char* argv[]) {
+int main (int argc, char *argv[]) {
     list<string> fileContents;
     if (argc == 2) {
-        string filename(argv[1]);
-        fileContents = readInputFile(filename);
+        string filename = argv[1];
+        fileContents = readInputFromFile(filename);
     } else if (argc == 1) {
         fileContents = readInputFromKeyboard();
     } else {
@@ -24,12 +25,13 @@ int main (int argc, char* argv[]) {
 
     list<string>::iterator i;
     for (i = fileContents.begin(); i != fileContents.end(); ++i){
-        binarySearchTree.addNode(*i);
+        string nextWord = *i;
+        binarySearchTree.addNode(nextWord);
     }
 
-    binarySearchTree.printPreOrderTraversal();
-    binarySearchTree.printInOrderTraversal();
-    binarySearchTree.printPostOrderTraversal();
+    binarySearchTree.traversePreorder();
+    binarySearchTree.traverseInorder();
+    binarySearchTree.traversePostorder();
 }
 
 list<string> readInputFromFile(string fileName) {

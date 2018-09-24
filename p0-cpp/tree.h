@@ -1,16 +1,10 @@
 #ifndef TREE_H
 #define TREE_H
 #include <string>
+#include "node.h"
 
     class BinarySearchTree { 
-        private: 
-            struct Node {
-                std::string value;
-                Node *left;
-                Node *right;
-                Node();
-                Node(std::string value);
-            };
+        private:
             Node *rootNode;
 
         public:

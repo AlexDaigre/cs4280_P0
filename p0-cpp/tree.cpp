@@ -3,28 +3,11 @@
 #include <list>
 #include <iostream>
 #include <fstream>
+#include "node.h"
 using namespace std; 
 
 class BinarySearchTree { 
     private: 
-        struct Node {
-            string value;
-            Node *left;
-            Node *right;
-
-            Node() {
-                this->value = "";
-                this->left = NULL;
-                this->right = NULL;
-            }
-
-            Node(string value) {
-                this->value = value;
-                this->left = NULL;
-                this->right = NULL;
-            }
-        };
-
         Node *rootNode;
 
     public:

@@ -37,6 +37,14 @@
         "__config": "cpp",
         "__nullptr": "cpp",
         "cstddef": "cpp",
-        "algorithm": "cpp"
+        "algorithm": "cpp",
+        "__bit_reference": "cpp",
+        "__functional_base": "cpp",
+        "atomic": "cpp",
+        "bitset": "cpp",
+        "chrono": "cpp",
+        "iterator": "cpp",
+        "memory": "cpp",
+        "ratio": "cpp"
     }
 }

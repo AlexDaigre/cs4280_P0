@@ -1,0 +1,1 @@
+/usr/bin/c++  -g   CMakeFiles/p0_cpp.dir/binarySearchTree.cpp.o CMakeFiles/p0_cpp.dir/P0.cpp.o  -o p0_cpp 

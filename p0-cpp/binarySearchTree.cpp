@@ -17,7 +17,7 @@ class BinarySearchTree {
                 this->right = NULL;
             }
 
-            Node(string value = "") {
+            Node(string value) {
                 this->value = value;
                 this->left = NULL;
                 this->right = NULL;
@@ -25,65 +25,35 @@ class BinarySearchTree {
         };
 
         Node *rootNode;
-  
+
     public:
-        void addNode(string value) { 
-            bool complete = false; 
-            Node *currentNode = this->rootNode;
-
-            if (currentNode->value == "") {
-                currentNode->value = value;
-                return;
-            }
-
-            addNodeRecursiveBody(currentNode, value);
-        }
-
-        void traversePostorder() {
-            Node *currentNode = this->rootNode;
-
-            if (currentNode->value == ""){
-                return;
-            }
-
-            postOrderRecursiveBody(currentNode);
-        }
-
-        void traverseInorder() {
-            Node *currentNode = this->rootNode;
-
-            if (currentNode->value == ""){
-                return;
-            }
-
-            inOrderRecursiveBody(currentNode);
-        }
-
-        void traversePreorder() {
-            Node *currentNode = this->rootNode;
-
-            if (currentNode->value == ""){
-                return;
-            }
-
-            preOrderRecursiveBody(currentNode);
+        BinarySearchTree() {
+            this->rootNode = new Node();
         }
 
     private:
-        void addNodeRecursiveBody(Node* node, string value) { 
+        void addNodeRecursiveBody(Node* node, string value) {
+            cout << "Starting add new node recursion\n";
             if (value.compare(node->value) > 0) {
+                cout << "New node is greater than current node\n";
                 if (node->right == NULL) {
+                    cout << "Current right node child is empty. Adding new right node.\n";
                     node->right = new Node(value);
                 } else {
+                    cout << "Right node already present, continuing traversal.\n";
                     addNodeRecursiveBody(node->right, value);
                 }
             } else {
+                cout << "New node is less than current node\n";
                 if (node->left == NULL) {
+                    cout << "Current left node child is empty. Adding new left node.\n";
                     node->left = new Node(value);
                 } else {
+                    cout << "Left node already present, continuing traversal.\n";
                     addNodeRecursiveBody(node->left, value);
                 }
             }
+            return;
         } 
 
         void preOrderRecursiveBody(Node* node) { 
@@ -115,4 +85,48 @@ class BinarySearchTree {
             postOrderRecursiveBody(node->right); 
             cout << node->value << " "; 
         } 
+  
+    public:
+        void addNode(string value) { 
+            cout << "Starting node insert\n";
+
+            if (this->rootNode->value.empty()) {
+                this->rootNode->value = value;
+                cout << "Initilised root node\n";
+            }
+
+            cout << "Adding new node\n";
+
+            addNodeRecursiveBody(this->rootNode, value);
+        }
+
+        void traversePostorder() {
+            Node *currentNode = this->rootNode;
+
+            if (currentNode->value == ""){
+                return;
+            }
+
+            postOrderRecursiveBody(currentNode);
+        }
+
+        void traverseInorder() {
+            Node *currentNode = this->rootNode;
+
+            if (currentNode->value == ""){
+                return;
+            }
+
+            inOrderRecursiveBody(currentNode);
+        }
+
+        void traversePreorder() {
+            Node *currentNode = this->rootNode;
+
+            if (currentNode->value == ""){
+                return;
+            }
+
+            preOrderRecursiveBody(currentNode);
+        }
 };

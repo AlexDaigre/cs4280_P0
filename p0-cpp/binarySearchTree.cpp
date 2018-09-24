@@ -33,28 +33,10 @@ class BinarySearchTree {
 
             if (currentNode->value == "") {
                 currentNode->value = value;
-                complete = true;
+                return;
             }
 
-            while (complete == false){ 
-                if (currentNode->value.compare(value) > 0) {
-                    if (currentNode->value.compare(value) > 0) {
-                        if (!currentNode->right) {
-                            currentNode->right = new Node(value);
-                            complete = true;
-                        } else {
-                            currentNode = currentNode->right;
-                        }
-                    } else {
-                        if (!currentNode->left) {
-                            currentNode->left = new Node(value);
-                            complete = true;
-                        } else {
-                            currentNode = currentNode->left;
-                        }
-                    }
-                }
-            }
+            addNodeRecursiveBody(currentNode, value);
         }
 
         void traversePostorder() {
@@ -88,6 +70,22 @@ class BinarySearchTree {
         }
 
     private:
+        void addNodeRecursiveBody(Node* node, string value) { 
+            if (value.compare(node->value) > 0) {
+                if (node->right == NULL) {
+                    node->right = new Node(value);
+                } else {
+                    addNodeRecursiveBody(node->right, value);
+                }
+            } else {
+                if (node->left == NULL) {
+                    node->left = new Node(value);
+                } else {
+                    addNodeRecursiveBody(node->left, value);
+                }
+            }
+        } 
+
         void preOrderRecursiveBody(Node* node) { 
             if (node == NULL) {
                 return; 

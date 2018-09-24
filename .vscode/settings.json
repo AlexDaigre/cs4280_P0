@@ -33,6 +33,10 @@
         "typeinfo": "cpp",
         "utility": "cpp",
         "deque": "cpp",
-        "functional": "cpp"
+        "functional": "cpp",
+        "__config": "cpp",
+        "__nullptr": "cpp",
+        "cstddef": "cpp",
+        "algorithm": "cpp"
     }
 }

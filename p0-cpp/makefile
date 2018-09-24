@@ -1,16 +1,16 @@
 CC      = g++
 CFLAGS  = -g
 TARGET  = P0
-OBJS    = P0.o binarySearchTree.o
+OBJS    = P0.o tree.o
 
 $(TARGET): $(OBJS)
 	$(CC) -o $(TARGET) $(OBJS)
 
-P0.o: P0.cpp binarySearchTree.o
+P0.o: P0.cpp tree.o
 	$(CC) $(CFLAGS) -c P0.cpp
 
-binarySearchTree.o: binarySearchTree.cpp binarySearchTree.h
-	$(CC) $(CFLAGS) -c binarySearchTree.cpp
+binarySearchTree.o: tree.cpp tree.h
+	$(CC) $(CFLAGS) -c tree.cpp
 
 clean:
 	/bin/rm -f *.o $(TARGET)

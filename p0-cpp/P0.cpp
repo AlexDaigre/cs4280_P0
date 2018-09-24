@@ -11,10 +11,12 @@ list<string> readInputFromKeyboard();
 
 int main (int argc, char *argv[]) {
     list<string> fileContents;
+    string filename;
     if (argc == 2) {
-        string filename = argv[1];
+        filename = argv[1];
         fileContents = readInputFromFile(filename);
     } else if (argc == 1) {
+        filename = "out";
         fileContents = readInputFromKeyboard();
     } else {
         cout << "There was an error with your arguments.\n";
@@ -32,15 +34,30 @@ int main (int argc, char *argv[]) {
         binarySearchTree.addNode(nextWord);
     }
 
-    cout << "Finished adding words to tree\n"; 
+    cout << "Finished adding words to tree\n";
 
-    binarySearchTree.traversePreorder();
-    binarySearchTree.traverseInorder();
-    binarySearchTree.traversePostorder();
+    ofstream preOrderOutputFile;
+    string preOrderOutputFileName = filename + ".preorder";
+    preOrderOutputFile.open(preOrderOutputFileName);
+    binarySearchTree.traversePreorder(preOrderOutputFile);
+    preOrderOutputFile.close();
+
+    ofstream inOrderOutputFile;
+    string inOrderOutputFileName = filename + ".ineorder";
+    inOrderOutputFile.open(inOrderOutputFileName);
+    binarySearchTree.traverseInorder(inOrderOutputFile);
+    inOrderOutputFile.close();
+
+    ofstream postOrderOutputFile;
+    string postOrderOutputFileName = filename + ".postorder";
+    postOrderOutputFile.open(postOrderOutputFileName);
+    binarySearchTree.traversePostorder(postOrderOutputFile);
+    postOrderOutputFile.close();
 }
 
 list<string> readInputFromFile(string fileName) {
     string fileNameWithExtention = fileName + ".fs182";
+    cout << "atempting to open " << fileNameWithExtention << "\n";
     string word;
     list<string> contents;
     ifstream myfile(fileName);

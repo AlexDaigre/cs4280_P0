@@ -6,7 +6,7 @@ OBJS    = P0.o binarySearchTree.o
 $(TARGET): $(OBJS)
 	$(CC) -o $(TARGET) $(OBJS)
 
-P0.o: P0.cpp
+P0.o: P0.cpp binarySearchTree.o
 	$(CC) $(CFLAGS) -c P0.cpp
 
 binarySearchTree.o: binarySearchTree.cpp

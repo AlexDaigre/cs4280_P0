@@ -2,6 +2,7 @@
 #include <stack>
 #include <list>
 #include <iostream>
+#include <fstream>
 using namespace std; 
 
 class BinarySearchTree { 
@@ -56,35 +57,46 @@ class BinarySearchTree {
             return;
         } 
 
-        void preOrderRecursiveBody(Node* node) { 
-            if (node == NULL) {
-                return; 
+        string getSpacesFromInt(int numberOfSpaces) {
+            string spaceString;
+            for(int i = 0; i < numberOfSpaces; i ++){
+                spaceString = spaceString + " ";
             }
-
-            cout << node->value << " "; 
-            preOrderRecursiveBody(node->left); 
-            preOrderRecursiveBody(node->right); 
-        } 
-
-        void inOrderRecursiveBody(Node* node) { 
-            if (node == NULL) {
-                return; 
-            }
-
-            inOrderRecursiveBody(node->left); 
-            cout << node->value << " "; 
-            inOrderRecursiveBody(node->right); 
+            return spaceString;
         }
 
-        void postOrderRecursiveBody(Node* node) { 
+        void preOrderRecursiveBody(Node* node, ofstream &outputFile, int level) { 
             if (node == NULL) {
                 return; 
             }
 
-            postOrderRecursiveBody(node->left); 
-            postOrderRecursiveBody(node->right); 
-            cout << node->value << " "; 
+            cout << getSpacesFromInt(level) << node->value << "\n";
+            outputFile << getSpacesFromInt(level) << node->value << "\n";
+            preOrderRecursiveBody(node->left, outputFile, ++level); 
+            preOrderRecursiveBody(node->right, outputFile, ++level); 
         } 
+
+        void inOrderRecursiveBody(Node* node, ofstream &outputFile, int level) { 
+            if (node == NULL) {
+                return; 
+            }
+
+            inOrderRecursiveBody(node->left, outputFile, ++level); 
+            cout << getSpacesFromInt(level) << node->value << "\n";
+            outputFile << getSpacesFromInt(level) << node->value << "\n";
+            inOrderRecursiveBody(node->right, outputFile, ++level); 
+        }
+
+        void postOrderRecursiveBody(Node* node, ofstream &outputFile, int level) { 
+            if (node == NULL) {
+                return; 
+            }
+
+            postOrderRecursiveBody(node->left, outputFile, ++level); 
+            postOrderRecursiveBody(node->right, outputFile, ++level);
+            cout << getSpacesFromInt(level) << node->value << "\n";
+            outputFile << getSpacesFromInt(level) << node->value << "\n";
+        }
   
     public:
         void addNode(string value) { 
@@ -100,33 +112,36 @@ class BinarySearchTree {
             addNodeRecursiveBody(this->rootNode, value);
         }
 
-        void traversePostorder() {
+        void traversePostorder(ofstream &outputFile) {
+            cout << "Starting post order traversal:\n";
             Node *currentNode = this->rootNode;
 
             if (currentNode->value == ""){
                 return;
             }
-
-            postOrderRecursiveBody(currentNode);
+            
+            postOrderRecursiveBody(currentNode, outputFile, 0);
         }
 
-        void traverseInorder() {
+        void traverseInorder(ofstream &outputFile) {
+            cout << "Starting in order traversal:\n";
             Node *currentNode = this->rootNode;
 
             if (currentNode->value == ""){
                 return;
             }
 
-            inOrderRecursiveBody(currentNode);
+            inOrderRecursiveBody(currentNode, outputFile, 0);
         }
 
-        void traversePreorder() {
+        void traversePreorder(ofstream &outputFile) {
+            cout << "Starting pre order traversal:\n";
             Node *currentNode = this->rootNode;
 
             if (currentNode->value == ""){
                 return;
             }
 
-            preOrderRecursiveBody(currentNode);
+            preOrderRecursiveBody(currentNode, outputFile, 0);
         }
 };

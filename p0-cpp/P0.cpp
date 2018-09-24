@@ -3,7 +3,7 @@
 #include <fstream>
 #include <string>
 #include <list>
-#include "binarySearchTree.h"
+#include "binarySearchTree.cpp"
 using namespace std;
 
 list<string> readInputFromFile(string fileName);
@@ -17,17 +17,22 @@ int main (int argc, char *argv[]) {
     } else if (argc == 1) {
         fileContents = readInputFromKeyboard();
     } else {
-        cout << "There was an error with your arguments.";
+        cout << "There was an error with your arguments.\n";
         return 1; 
     }
+
+    cout << "got input\n";
 
     BinarySearchTree binarySearchTree;
 
     list<string>::iterator i;
     for (i = fileContents.begin(); i != fileContents.end(); ++i){
         string nextWord = *i;
+        cout << "adding word " << nextWord << " to tree\n"; 
         binarySearchTree.addNode(nextWord);
     }
+
+    cout << "Finished adding words to tree\n"; 
 
     binarySearchTree.traversePreorder();
     binarySearchTree.traverseInorder();
@@ -46,7 +51,7 @@ list<string> readInputFromFile(string fileName) {
         }
         myfile.close();
     } else {
-        cout << "Unable to open file";
+        cout << "Unable to open file\n";
     }
     
     return contents;
@@ -55,8 +60,11 @@ list<string> readInputFromFile(string fileName) {
 list<string> readInputFromKeyboard() {
     string word;
     list<string> contents;
+    cout << "getting input\n";
     while (cin >> word) {
         contents.push_back(word);
+        cout << " detected word, ";
     }
+    cout << "\nEnding word detection\n";
     return contents;
 }

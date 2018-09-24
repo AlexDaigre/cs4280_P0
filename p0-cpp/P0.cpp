@@ -3,7 +3,7 @@
 #include <fstream>
 #include <string>
 #include <list>
-#include "binarySearchTree.cpp"
+#include "binarySearchTree.h"
 using namespace std;
 
 list<string> readInputFromFile(string fileName);

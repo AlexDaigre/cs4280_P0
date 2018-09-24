@@ -3,6 +3,7 @@
 #include <list>
 #include <iostream>
 #include <fstream>
+#include "binarySearchTree.h"
 using namespace std; 
 
 class BinarySearchTree { 

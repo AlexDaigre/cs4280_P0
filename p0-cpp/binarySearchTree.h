@@ -1,15 +1,15 @@
-#ifndef ADD_H
-#define ADD_H
+#ifndef BINARYSEARCHTREE_H
+#define BINARYSEARCHTREE_H
 #include <string>
 
     class BinarySearchTree { 
         private: 
             struct Node {
-                std::string value;
+                string value;
                 Node *left;
                 Node *right;
                 Node() {};
-                Node(std::string value) {};
+                Node(string value) {};
             };
             Node *rootNode;
 
@@ -17,16 +17,17 @@
             BinarySearchTree() {};
 
         private:
-            void addNodeRecursiveBody(Node* node, std::string value) {};
-            void preOrderRecursiveBody(Node* node) {};
-            void inOrderRecursiveBody(Node* node) {};
-            void postOrderRecursiveBody(Node* node) {};
+            void addNodeRecursiveBody(Node* node, string value) {}; 
+            string getSpacesFromInt(int numberOfSpaces) {};
+            void preOrderRecursiveBody(Node* node, ofstream &outputFile, int level) {};
+            void inOrderRecursiveBody(Node* node, ofstream &outputFile, int level) {};
+            void postOrderRecursiveBody(Node* node, ofstream &outputFile, int level) {};
     
         public:
-            void addNode(std::string value) {};
-            void traversePostorder() {};
-            void traverseInorder() {};
-            void traversePreorder() {};
+            void addNode(string value) {};
+            void traversePostorder(ofstream &outputFile) {};
+            void traverseInorder(ofstream &outputFile) {};
+            void traversePreorder(ofstream &outputFile) {};
     };
 
 #endif

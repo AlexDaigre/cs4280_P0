@@ -9,7 +9,7 @@ $(TARGET): $(OBJS)
 P0.o: P0.cpp binarySearchTree.o
 	$(CC) $(CFLAGS) -c P0.cpp
 
-binarySearchTree.o: binarySearchTree.cpp
+binarySearchTree.o: binarySearchTree.cpp binarySearchTree.h
 	$(CC) $(CFLAGS) -c binarySearchTree.cpp
 
 clean:

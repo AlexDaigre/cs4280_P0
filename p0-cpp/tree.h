@@ -3,25 +3,25 @@
 #include <string>
 #include "node.h"
 
-    class BinarySearchTree { 
-        private:
-            Node *rootNode;
+class Tree { 
+    private:
+        Node *rootNode;
 
-        public:
-            BinarySearchTree();
+    public:
+        Tree();
 
-        private:
-            void addNodeRecursiveBody(Node* node, std::string value); 
-            std::string getSpacesFromInt(int numberOfSpaces);
-            void preOrderRecursiveBody(Node* node, std::ofstream &outputFile, int level);
-            void inOrderRecursiveBody(Node* node, std::ofstream &outputFile, int level);
-            void postOrderRecursiveBody(Node* node, std::ofstream &outputFile, int level);
-    
-        public:
-            void addNode(std::string value);
-            void traversePostorder(std::ofstream &outputFile);
-            void traverseInorder(std::ofstream &outputFile);
-            void traversePreorder(std::ofstream &outputFile);
-    };
+    private:
+        void addNodeRecursiveBody(Node* node, std::string value); 
+        std::string getSpacesFromInt(int numberOfSpaces);
+        void preOrderRecursiveBody(Node* node, std::ofstream &outputFile, int level);
+        void inOrderRecursiveBody(Node* node, std::ofstream &outputFile, int level);
+        void postOrderRecursiveBody(Node* node, std::ofstream &outputFile, int level);
+
+    public:
+        void buildTree(std::string value);
+        void traversePostorder(std::ofstream &outputFile);
+        void traverseInorder(std::ofstream &outputFile);
+        void traversePreorder(std::ofstream &outputFile);
+};
 
 #endif

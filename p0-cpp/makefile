@@ -6,11 +6,11 @@ OBJS    = P0.o tree.o
 $(TARGET): $(OBJS)
 	$(CC) -o $(TARGET) $(OBJS)
 
-P0.o: P0.cpp tree.o
-	$(CC) $(CFLAGS) -c P0.cpp
+P0.o: P0.c tree.h
+	$(CC) $(CFLAGS) -c P0.c
 
-binarySearchTree.o: tree.cpp tree.h node.h
-	$(CC) $(CFLAGS) -c tree.cpp
+tree.o: tree.c tree.h node.h
+	$(CC) $(CFLAGS) -c tree.c
 
 clean:
 	/bin/rm -f *.o $(TARGET)

@@ -25,13 +25,13 @@ int main (int argc, char *argv[]) {
 
     cout << "got input\n";
 
-    BinarySearchTree binarySearchTree;
+    Tree tree;
 
     list<string>::iterator i;
     for (i = fileContents.begin(); i != fileContents.end(); ++i){
         string nextWord = *i;
         cout << "adding word " << nextWord << " to tree\n"; 
-        binarySearchTree.addNode(nextWord);
+        tree.buildTree(nextWord);
     }
 
     cout << "Finished adding words to tree\n";
@@ -39,19 +39,19 @@ int main (int argc, char *argv[]) {
     ofstream preOrderOutputFile;
     string preOrderOutputFileName = filename + ".preorder";
     preOrderOutputFile.open(preOrderOutputFileName);
-    binarySearchTree.traversePreorder(preOrderOutputFile);
+    tree.traversePreorder(preOrderOutputFile);
     preOrderOutputFile.close();
 
     ofstream inOrderOutputFile;
     string inOrderOutputFileName = filename + ".ineorder";
     inOrderOutputFile.open(inOrderOutputFileName);
-    binarySearchTree.traverseInorder(inOrderOutputFile);
+    tree.traverseInorder(inOrderOutputFile);
     inOrderOutputFile.close();
 
     ofstream postOrderOutputFile;
     string postOrderOutputFileName = filename + ".postorder";
     postOrderOutputFile.open(postOrderOutputFileName);
-    binarySearchTree.traversePostorder(postOrderOutputFile);
+    tree.traversePostorder(postOrderOutputFile);
     postOrderOutputFile.close();
 }
 

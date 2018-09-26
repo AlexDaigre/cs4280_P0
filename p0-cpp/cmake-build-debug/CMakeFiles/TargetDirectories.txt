@@ -1,3 +1,0 @@
-/home/alex/Code/school/cs4280/cs4280_P0/p0-cpp/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/home/alex/Code/school/cs4280/cs4280_P0/p0-cpp/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/alex/Code/school/cs4280/cs4280_P0/p0-cpp/cmake-build-debug/CMakeFiles/p0_cpp.dir

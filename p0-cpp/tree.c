@@ -1,4 +1,5 @@
 #include <string>
+#include <set>
 #include <stack>
 #include <list>
 #include <iostream>
@@ -15,7 +16,7 @@ using namespace std;
     //private:
     void Tree::addNodeRecursiveBody(Node* node, string value) {
         cout << "Starting add new node recursion\n";
-        if (value.compare(node->value) > 0) {
+        if (value.front() > node->value.front()) {
             cout << "New node is greater than current node\n";
             if (node->right == NULL) {
                 cout << "Current right node child is empty. Adding new right node.\n";
@@ -24,14 +25,21 @@ using namespace std;
                 cout << "Right node already present, continuing traversal.\n";
                 addNodeRecursiveBody(node->right, value);
             }
-        } else {
+        } else if (value.front() < node->value.front()) {
             cout << "New node is less than current node\n";
             if (node->left == NULL) {
                 cout << "Current left node child is empty. Adding new left node.\n";
-                node->left = new Node(value);
+                node->left = new Node(value + " ");
             } else {
                 cout << "Left node already present, continuing traversal.\n";
                 addNodeRecursiveBody(node->left, value);
+            }
+        } else {
+            cout << "Current node is the same value as input.\n";
+            set<string>::iterator it;
+            it=node->valuesSet.find(value);
+            if (it == node->valuesSet.end()) {
+                node->valuesSet.insert(value);
             }
         }
         return;
@@ -45,13 +53,21 @@ using namespace std;
         return spaceString;
     }
 
+    string Tree::getStringFromSet(set<string> valuesSet){
+        string valuesSetString = "";
+        for (string const& value : valuesSet){
+            valuesSetString += value + ' ';
+        }
+        return valuesSetString;
+    }
+
     void Tree::preOrderRecursiveBody(Node* node, ofstream &outputFile, int level) { 
         if (node == NULL) {
             return; 
         }
 
-        cout << getSpacesFromInt(level) << node->value << "\n";
-        outputFile << getSpacesFromInt(level) << node->value << "\n";
+        cout << getSpacesFromInt(level) << node->value << ": " << getStringFromSet(node->valuesSet) << "\n";
+        outputFile << getSpacesFromInt(level) << node->value << ": " << getStringFromSet(node->valuesSet) << "\n";
         preOrderRecursiveBody(node->left, outputFile, ++level); 
         preOrderRecursiveBody(node->right, outputFile, ++level); 
     } 
@@ -62,8 +78,8 @@ using namespace std;
         }
 
         inOrderRecursiveBody(node->left, outputFile, ++level); 
-        cout << getSpacesFromInt(level) << node->value << "\n";
-        outputFile << getSpacesFromInt(level) << node->value << "\n";
+        cout << getSpacesFromInt(level) << node->value << ": " << getStringFromSet(node->valuesSet) << "\n";
+        outputFile << getSpacesFromInt(level) << node->value << ": " << getStringFromSet(node->valuesSet) << "\n";
         inOrderRecursiveBody(node->right, outputFile, ++level); 
     }
 
@@ -74,8 +90,8 @@ using namespace std;
 
         postOrderRecursiveBody(node->left, outputFile, ++level); 
         postOrderRecursiveBody(node->right, outputFile, ++level);
-        cout << getSpacesFromInt(level) << node->value << "\n";
-        outputFile << getSpacesFromInt(level) << node->value << "\n";
+        cout << getSpacesFromInt(level) << node->value << ": " << getStringFromSet(node->valuesSet) << "\n";
+        outputFile << getSpacesFromInt(level) << node->value << ": " << getStringFromSet(node->valuesSet) << "\n";
     }
 
 

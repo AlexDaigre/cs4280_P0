@@ -43,7 +43,7 @@ int main (int argc, char *argv[]) {
     preOrderOutputFile.close();
 
     ofstream inOrderOutputFile;
-    string inOrderOutputFileName = filename + ".ineorder";
+    string inOrderOutputFileName = filename + ".inorder";
     inOrderOutputFile.open(inOrderOutputFileName.c_str());
     tree.traverseInorder(inOrderOutputFile);
     inOrderOutputFile.close();

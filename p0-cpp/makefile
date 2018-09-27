@@ -13,4 +13,4 @@ tree.o: tree.c tree.h node.h
 	$(CC) $(CFLAGS) -c tree.c
 
 clean:
-	/bin/rm -f *.o $(TARGET)
+	/bin/rm -f *.o $(TARGET) *.inorder *.postorder *.preorder

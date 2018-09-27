@@ -38,19 +38,19 @@ int main (int argc, char *argv[]) {
 
     ofstream preOrderOutputFile;
     string preOrderOutputFileName = filename + ".preorder";
-    preOrderOutputFile.open(preOrderOutputFileName);
+    preOrderOutputFile.open(preOrderOutputFileName.c_str());
     tree.traversePreorder(preOrderOutputFile);
     preOrderOutputFile.close();
 
     ofstream inOrderOutputFile;
     string inOrderOutputFileName = filename + ".ineorder";
-    inOrderOutputFile.open(inOrderOutputFileName);
+    inOrderOutputFile.open(inOrderOutputFileName.c_str());
     tree.traverseInorder(inOrderOutputFile);
     inOrderOutputFile.close();
 
     ofstream postOrderOutputFile;
     string postOrderOutputFileName = filename + ".postorder";
-    postOrderOutputFile.open(postOrderOutputFileName);
+    postOrderOutputFile.open(postOrderOutputFileName.c_str());
     tree.traversePostorder(postOrderOutputFile);
     postOrderOutputFile.close();
 }
@@ -60,7 +60,7 @@ list<string> readInputFromFile(string fileName) {
     cout << "atempting to open " << fileNameWithExtention << "\n";
     string word;
     list<string> contents;
-    ifstream myfile(fileName);
+    ifstream myfile(fileName.c_str());
 
     if (myfile.is_open()) {
         while (myfile >> word) {

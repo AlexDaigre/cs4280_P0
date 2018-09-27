@@ -2,6 +2,7 @@
 #define NODE_H
     #include <string>
     #include <set>
+    #include <iostream> 
 
     struct Node {
         std::set<std::string> valuesSet;
@@ -16,7 +17,7 @@
         }
 
         Node(std::string value) {
-            this->value = value.front();
+            this->value = value[0];
             this->valuesSet.insert(value);
             this->left = NULL;
             this->right = NULL;
